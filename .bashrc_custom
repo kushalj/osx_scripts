@@ -1,0 +1,99 @@
+#!/bin/bash
+name=$(cat $HOME/scripts/PROJECT_NAME.txt)
+extension=$(cat $HOME/scripts/PROJECT_EXT.txt)
+project=$name$extension
+
+cd /$HOME/$project
+
+
+# for python
+# alias $name-v='source ~/$name-venv/bin/activate'
+
+# Wsgi='.wsgi:application'
+# green=$project$wsgi
+
+# deploy_local_gunicorn
+# alias dlg='gunicorn --log-level debug -b [::]:8000 $green'
+
+# Django stuff
+# alias cs='python manage.py collectstatic'
+
+
+# python smtpd
+alias lmail='python -m smtpd -n -c DebuggingServer localhost:1025'
+
+
+# south migration shortcuts
+alias mschi='python ./manage.py schemamigration --initial'
+alias msch='python ./manage.py schemamigration --auto $1 $2'
+alias mupd='python ./manage.py schemamigration --auto --update $1 $2'
+alias mdam='python ./manage.py datamigration $1 $2'
+alias mmig='python ./manage.py migrate $1 $2'
+
+
+
+
+# git and deployment
+alias gitc='git commit -m $1'
+alias gitca='git commit -am $1'
+alias gits='git status'
+
+alias gitpom='git push origin master'
+
+# git develop
+alias gitcd="git checkout develop"
+alias gitpod="git push origin develop"
+
+#git gitstaging
+alias gitcs="git checkout staging"
+alias gitmd="git merge develop"
+
+alias gitpos="git push origin staging"
+alias gitphs="git push staging-heroku staging:master"
+
+#git production
+alias gitcp="git checkout master"
+alias gitms="git merge staging"
+
+alias gitpop="git push origin master"
+alias gitphp="git push production-heroku master:master"
+
+alias gitpoa="source $HOME/scripts/git-push-origin-all.sh"
+alias gitpha="source $HOME/scripts/git-push-heroku-all.sh"
+
+# app deployment
+alias dr='source $HOME/scripts/deploy.sh'
+alias dl='source $HOME/scripts/local.sh $1'
+
+
+
+
+
+
+# postgres database "pdb" dump and restore
+alias dump='sh $HOME/scripts/dump_pdb.sh $1'
+alias restore='sh $HOME/scripts/restore_pdb.sh $1'
+
+
+
+
+# heroku
+alias hrestore='heroku pgbackups:restore DATABASE $1 $2 $3'
+alias hdump='sh $HOME/scripts/heroku_dump.sh $1'
+alias hreset='heroku pg:reset DATABASE $1 $2'
+
+
+
+bcustom=".bashrc_custom"
+
+# bash stuff
+alias cpbashp='cp $HOME/scripts/$bcustom $HOME/'
+alias bashp='source $HOME/$bcustom'
+alias vbashp='vim $HOME/scripts/$bcustom'
+alias embashp='emacs -nw $HOME/scripts/$bcustom'
+alias vbashl='cat $HOME/$bcustom | less'
+
+alias cdsc="cd $HOME/scripts"
+
+
+
